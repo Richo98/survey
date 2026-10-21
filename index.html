@@ -5,149 +5,147 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sondaggio</title>
 <style>
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background-color: #f7f9fa;
-      color: #14171a;
-      padding: 20px;
-    }
-
-    .card {
-      background: #ffffff;
-      padding: 40px 30px;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      text-align: center;
-      max-width: 400px;
-      width: 100%;
-      position: relative;
-    }
-  
-    h1 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 24px;
-      line-height: 1.4;
-      color: #222222;
-    }
-  
-    .btn-container {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      margin-top: 20px;
-      position: relative;
-      min-height: 50px;
-    }
-
-    button {
-      padding: 12px 28px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      border: none;
-    }
-
-    .btn-yes {
-      background-color: #0f1419;
-      color: #ffffff;
-      margin-right: 60px; 
-    }
-
-    .btn-yes:hover {
-      background-color: #272c30;
-    }
-
-    .btn-no {
-      background-color: #e1e8ed;
-      color: #5b7083;
-      position: absolute;
-    }
-
-    .success-message {
-      display: none;
-      font-size: 1.1rem;
-      font-weight: 500;
-      color: #00875a;
-      margin-top: 10px;
-    }
+ * {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+ }
+ body {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   min-height: 100vh;
+   background-color: #f7f9fa;
+   color: #14171a;
+   padding: 20px;
+ }
+ .card {
+   background: #ffffff;
+   padding: 40px 30px;
+   border-radius: 16px;
+   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+   text-align: center;
+   max-width: 400px;
+   width: 100%;
+   position: relative;
+ }
+ h1 {
+   font-size: 1.25rem;
+   font-weight: 600;
+   margin-bottom: 24px;
+   line-height: 1.4;
+   color: #222222;
+ }
+ .btn-container {
+   display: flex;
+   justify-content: center;
+   gap: 16px;
+   margin-top: 20px;
+   position: relative;
+   min-height: 50px;
+ }
+ button {
+   padding: 12px 28px;
+   font-size: 0.95rem;
+   font-weight: 500;
+   border-radius: 8px;
+   cursor: pointer;
+   transition: all 0.2s ease;
+   border: none;
+ }
+ .btn-yes {
+   background-color: #0f1419;
+   color: #ffffff;
+   margin-right: 60px;
+ }
+ .btn-yes:hover {
+   background-color: #272c30;
+ }
+ .btn-no {
+   background-color: #e1e8ed;
+   color: #5b7083;
+   position: absolute;
+ }
+ .success-message {
+   display: none;
+   font-size: 1.1rem;
+   font-weight: 500;
+   color: #00875a;
+   margin-top: 10px;
+ }
 </style>
 </head>
 <body>
 <div class="card" id="card">
+<!-- SCHERMATA 1: Benvenuto iniziale -->
+<div id="introStep">
+<h1>Ciao Ilaria!👋</h1>
+<div style="font-size: 0.80rem; color: #8c939d; margin-top: 6px; font-weight: 300; letter-spacing: 0.3px;">
+     (Vorrei farti una domanda..)
+</div>
+<div style="margin-top: 24px;">
+<button class="btn-yes" style="margin-right: 0;" onclick="goToQuestion()">Continua</button>
+</div>
+</div>
+<!-- SCHERMATA 2: Domanda e pulsanti (nascosta all'inizio) -->
+<div id="questionStep" style="display: none;">
 <h1 id="question">Usciamo insieme questo weekend?
 <div style="font-size: 0.65rem; color: #8c939d; margin-top: 6px; font-weight: 300; letter-spacing: 0.3px;">  
-   (io proverei a cliccare no)😁
-</div> 
+       (io proverei a cliccare no)😁
+</div>
 </h1>
-   
 <div class="btn-container" id="container">
 <button class="btn-yes" onclick="selectYes()">Sì!</button>
 <button class="btn-no" id="noBtn">No</button>
 </div>
-  
 <div class="success-message" id="successMsg">
-      Ottima scelta! Ti scrivo in chat per metterci d'accordo😉
+     Ottima scelta! Ti scrivo in chat per metterci d'accordo😉
 <div style="font-size: 0.65rem; color: #8c939d; margin-top: 24px; font-weight: 300; letter-spacing: 0.3px;">
-       (Scherzo, se non vuoi/puoi no problem)   
+       (Scherzo, se non vuoi/puoi no problem)  
 </div>
 </div>
-  
+</div>
+</div>
 <script>
-    const noBtn = document.getElementById('noBtn');
-    const container = document.getElementById('container');
-  
-    // Posiziona inizialmente il pulsante No a fianco del Sì
-    function initNoBtn() {
-      noBtn.style.left = '60%';
-      noBtn.style.top = '0px';
-    }
-    initNoBtn();
-
-    function moveButton() {
-      const card = document.getElementById('card');
-      const cardRect = card.getBoundingClientRect();
-      const btnRect = noBtn.getBoundingClientRect();
-
-      // Calcola i limiti per rimanere dentro la scheda
-      const maxX = cardRect.width - btnRect.width - 20;
-      const maxY = cardRect.height - btnRect.height - 20;
-      
-      const randomX = Math.max(10, Math.floor(Math.random() * maxX));
-      const randomY = Math.max(10, Math.floor(Math.random() * maxY));
-
-      noBtn.style.position = 'absolute';
-      noBtn.style.left = `${randomX}px`;
-      noBtn.style.top = `${randomY}px`;
-    }
-
-    // Su desktop (hover) e su mobile (touch)
-    noBtn.addEventListener('mouseover', moveButton);
-    noBtn.addEventListener('touchstart', function(e) {
-      e.preventDefault();
-      moveButton();
-    });
-
-    function selectYes() {
-      document.getElementById('question').style.display = 'none';
-      document.getElementById('container').style.display = 'none';
-      document.getElementById('successMsg').style.display = 'block';
-    }
+   const noBtn = document.getElementById('noBtn');
+   const container = document.getElementById('container');
+   // Funzione per passare dal saluto alla domanda
+   function goToQuestion() {
+     document.getElementById('introStep').style.display = 'none';
+     document.getElementById('questionStep').style.display = 'block';
+     initNoBtn(); // Inizializza la posizione del tasto No quando appare la domanda
+   }
+   // Posiziona inizialmente il pulsante No a fianco del Sì
+   function initNoBtn() {
+     noBtn.style.left = '60%';
+     noBtn.style.top = '0px';
+   }
+   function moveButton() {
+     const card = document.getElementById('card');
+     const cardRect = card.getBoundingClientRect();
+     const btnRect = noBtn.getBoundingClientRect();
+     // Calcola i limiti per rimanere dentro la scheda
+     const maxX = cardRect.width - btnRect.width - 20;
+     const maxY = cardRect.height - btnRect.height - 20;
+     const randomX = Math.max(10, Math.floor(Math.random() * maxX));
+     const randomY = Math.max(10, Math.floor(Math.random() * maxY));
+     noBtn.style.position = 'absolute';
+     noBtn.style.left = `${randomX}px`;
+     noBtn.style.top = `${randomY}px`;
+   }
+   // Su desktop (hover) e su mobile (touch)
+   noBtn.addEventListener('mouseover', moveButton);
+   noBtn.addEventListener('touchstart', function(e) {
+     e.preventDefault();
+     moveButton();
+   });
+   function selectYes() {
+     document.getElementById('question').style.display = 'none';
+     document.getElementById('container').style.display = 'none';
+     document.getElementById('successMsg').style.display = 'block';
+   }
 </script>
-  
 </body>
-</html>
+</html>>
  
